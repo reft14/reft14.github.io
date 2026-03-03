@@ -1026,21 +1026,21 @@ let books = JSON.parse(localStorage.getItem('musicLibrary') || '[]');
 // Sample data if empty
 if (books.length === 0) {
   books = [
-    { id: 1, title: 'Frank Ocean — Blonde', artist: 'Frank Ocean', year: 2016, genre: 'pop', duration: '60:08', emoji: '🌊', tags: ['감성', 'R&B', '새벽'], memo: '이 앨범을 처음 들은 새벽을 기억한다' },
-    { id: 2, title: 'Daft Punk — Random Access Memories', artist: 'Daft Punk', year: 2013, genre: 'electronic', duration: '74:24', emoji: '🤖', tags: ['레트로', '디스코'], memo: 'Get Lucky — 여름의 시작' },
-    { id: 3, title: 'Kendrick Lamar — DAMN.', artist: 'Kendrick Lamar', year: 2017, genre: 'hiphop', duration: '54:54', emoji: '🔥', tags: ['강렬', '서사'], memo: '' },
-    { id: 4, title: 'Radiohead — OK Computer', artist: 'Radiohead', year: 1997, genre: 'indie', duration: '53:21', emoji: '📻', tags: ['몽환', '앰비언트'], memo: '시대를 앞서간 앨범' },
-    { id: 5, title: 'Debussy — Clair de Lune', artist: 'Claude Debussy', year: 1905, genre: 'classical', duration: '5:02', emoji: '🌙', tags: ['피아노', '달빛'], memo: '달이 뜨면 꼭 틀어야 해' },
-    { id: 6, title: 'SZA — SOS', artist: 'SZA', year: 2022, genre: 'pop', duration: '60:39', emoji: '💿', tags: ['R&B', '감성', '여름'], memo: '' },
-    { id: 7, title: 'Aphex Twin — Selected Ambient Works', artist: 'Aphex Twin', year: 1992, genre: 'electronic', duration: '74:06', emoji: '👾', tags: ['앰비언트', '테크노'], memo: '집중할 때 항상' },
-    { id: 8, title: 'Tyler the Creator — Igor', artist: 'Tyler, the Creator', year: 2019, genre: 'hiphop', duration: '39:33', emoji: '🟡', tags: ['실험적', '팝'], memo: '' },
-    { id: 9, title: 'Bon Iver — For Emma', artist: 'Bon Iver', year: 2008, genre: 'indie', duration: '37:01', emoji: '🏔️', tags: ['겨울', '포크'], memo: '눈 오는 날 필수' },
-    { id: 10, title: 'Bach — Goldberg Variations', artist: 'Glenn Gould', year: 1981, genre: 'classical', duration: '51:18', emoji: '🎹', tags: ['바흐', '피아노'], memo: '' },
-    { id: 11, title: 'The Weeknd — After Hours', artist: 'The Weeknd', year: 2020, genre: 'pop', duration: '56:16', emoji: '🌆', tags: ['신스팝', '다크'], memo: '새벽 드라이브' },
-    { id: 12, title: 'Burial — Untrue', artist: 'Burial', year: 2007, genre: 'electronic', duration: '46:03', emoji: '🌧️', tags: ['덥스텝', '감성'], memo: '비 오는 날' },
-    { id: 13, title: 'J. Cole — 2014 Forest Hills Drive', artist: 'J. Cole', year: 2014, genre: 'hiphop', duration: '58:37', emoji: '🏠', tags: ['성찰', '스토리'], memo: '' },
-    { id: 14, title: 'Arcade Fire — Funeral', artist: 'Arcade Fire', year: 2004, genre: 'indie', duration: '47:50', emoji: '🎭', tags: ['앤섬', '감동'], memo: '인생 앨범' },
-    { id: 15, title: 'Chopin — Nocturnes', artist: 'Arthur Rubinstein', year: 1965, genre: 'classical', duration: '79:14', emoji: '🕯️', tags: ['야상곡', '피아노'], memo: '잠들기 전' },
+    { id: 1, title: '푸름의 환영', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🌅', tags: ['청춘', '어쿠스틱', 'Jpop'], memo: '앨범 제작의 시작' },
+    { id: 2, title: '희망의 등대', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🚤', tags: ['Jpop', '발라드'], memo: '앨범의 마지막 곡' },
+    { id: 3, title: '습작 1.', artist: 'ReFT', year: 2017, genre: 'hiphop', duration: '56:16', emoji: '🔥', tags: ['강렬', '서사'], memo: '' },
+    { id: 4, title: '습작 2', artist: 'ReFT', year: 1997, genre: 'indie', duration: '56:16', emoji: '📻', tags: ['몽환', '앰비언트'], memo: '시대를 앞서간 앨범' },
+    { id: 5, title: '습작 3', artist: 'ReFT', year: 1905, genre: 'classical', duration: '56:16', emoji: '🌙', tags: ['피아노', '달빛'], memo: '달이 뜨면 꼭 틀어야 해' },
+    { id: 6, title: '습작 4', artist: 'ReFT', year: 2022, genre: 'pop', duration: '56:16', emoji: '💿', tags: ['R&B', '감성', '여름'], memo: '' },
+    { id: 7, title: 'プロポーズ', artist: '内緒のピアス', year: 2023, genre: 'indie', duration: '56:16', emoji: '💔', tags: ['앰비언트', '테크노'], memo: '집중할 때 항상' },
+    { id: 8, title: '날아오른 무지개', artist: 'ReFT', year: 2025, genre: 'hiphop', duration: '56:16', emoji: '🌈', tags: ['실험적', '팝'], memo: '세 오리지널 곡중 가장 좋은 곡' },
+    { id: 9, title: '夢花火', artist: 'まふまふ', year: 2015, genre: 'indie', duration: '56:16', emoji: '🎇', tags: ['Jpop', '신남'], memo: 'Jpop 입문 곡' },
+    { id: 10, title: '크리스탈 사색', artist: 'ReFT', year: 2025, genre: 'hiphop', duration: '56:16', emoji: '💠', tags: ['랩', '힙합'], memo: '정식 릴리즈 첫 곡' },
+    { id: 11, title: 'Listen Your Echo', artist: 'ReFT', year: 2025, genre: 'hiphop', duration: '56:16', emoji: '🤬', tags: ['Jpop', '랩'], memo: '가장 정신나간 곡' },
+    { id: 12, title: 'Burial — Untrue', artist: 'ReFT', year: 2007, genre: 'electronic', duration: '56:16', emoji: '🌧️', tags: ['덥스텝', '감성'], memo: '비 오는 날' },
+    { id: 13, title: 'J. Cole — 2014 Forest Hills Drive', artist: 'ReFT', year: 2014, genre: 'hiphop', duration: '56:16', emoji: '🏠', tags: ['성찰', '스토리'], memo: '' },
+    { id: 14, title: 'Arcade Fire — Funeral', artist: 'ReFT', year: 2004, genre: 'indie', duration: '56:16', emoji: '🎭', tags: ['앤섬', '감동'], memo: '인생 앨범' },
+    { id: 15, title: 'Chopin — Nocturnes', artist: 'ReFT', year: 1965, genre: 'classical', duration: '56:16', emoji: '🕯️', tags: ['야상곡', '피아노'], memo: '잠들기 전' },
   ];
   saveBooks();
 }
