@@ -1117,7 +1117,7 @@ function createBookEl(b, i) {
   el.innerHTML = `
     <div class="book-spine" style="background: linear-gradient(135deg, ${color.bg} 0%, ${adjustColor(color.bg, -20)} 100%); box-shadow: inset -2px 0 4px rgba(0,0,0,0.4), 2px 0 8px rgba(0,0,0,0.3);">
       <span class="book-ornament" style="color:${color.accent}">✦</span>
-      <span class="book-title-spine" style="color:${color.accent}; ${/^[a-zA-Z\s\-—·.,'!?]+$/.test(b.title) ? 'font-size:0.5rem;' : ''}">${b.title}</span>
+      <span class="book-title-spine" style="color:${color.accent}">${b.title}</span>
       <span class="book-year-spine" style="color:${color.accent}80">${b.year || ''}</span>
     </div>
     <div class="book-tooltip">
