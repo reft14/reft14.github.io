@@ -1265,8 +1265,6 @@ const observer = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.shelf-section').forEach(s => observer.observe(s));
 
-// ── INIT ──
-renderAll();
 // ── ADMIN MODE ──
 let adminBuffer = '';
 document.addEventListener('keydown', (e) => {
@@ -1284,6 +1282,8 @@ document.addEventListener('keydown', (e) => {
     console.log(isHidden ? '🔓 Admin mode ON' : '🔒 Admin mode OFF');
   }
 });
+// ── INIT ──
+renderAll();
 </script>
 </body>
 </html>
