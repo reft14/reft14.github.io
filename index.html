@@ -819,18 +819,18 @@
 <!-- Genre Nav -->
 <nav class="genre-nav">
   <button class="genre-tab active" onclick="filterGenre('all', this)">All</button>
-  <button class="genre-tab" onclick="filterGenre('pop', this)">Album</button>
+  <button class="genre-tab admin-only" onclick="filterGenre('pop', this)" style="display:none;">Album</button>
   <button class="genre-tab" onclick="filterGenre('electronic', this)">Etude</button>
   <button class="genre-tab" onclick="filterGenre('hiphop', this)">Released</button>
   <button class="genre-tab" onclick="filterGenre('indie', this)">Cover</button>
-  <button class="genre-tab" onclick="filterGenre('classical', this)">Videos</button>
+  <button class="genre-tab admin-only" onclick="filterGenre('classical', this)" style="display:none;">Videos</button>
 </nav>
 
 <!-- Library Main -->
 <main class="library-main" id="libraryMain">
 
   <!-- SHELF 1: Pop / R&B -->
-  <section class="shelf-section" data-genre="pop" id="shelf-pop">
+  <section class="shelf-section admin-only" data-genre="pop" id="shelf-pop" style="display:none;">
     <div class="shelf-label">
       <div class="shelf-label-line"></div>
       <div class="shelf-label-text">
@@ -902,7 +902,7 @@
   </section>
 
   <!-- SHELF 5: Classical -->
-  <section class="shelf-section" data-genre="classical" id="shelf-classical">
+  <section class="shelf-section admin-only" data-genre="classical" id="shelf-classical" style="display:none;">
     <div class="shelf-label">
       <div class="shelf-label-line"></div>
       <div class="shelf-label-text">
@@ -1267,6 +1267,23 @@ document.querySelectorAll('.shelf-section').forEach(s => observer.observe(s));
 
 // ── INIT ──
 renderAll();
+// ── ADMIN MODE ──
+let adminBuffer = '';
+document.addEventListener('keydown', (e) => {
+  adminBuffer += e.key;
+  if (adminBuffer.length > 12) adminBuffer = adminBuffer.slice(-12);
+  if (adminBuffer.includes('showmeadmin')) {
+    adminBuffer = '';
+    const hidden = document.querySelectorAll('.admin-only');
+    const isHidden = hidden[0].style.display === 'none';
+    hidden.forEach(el => {
+      el.style.display = isHidden ? '' : 'none';
+    });
+    // 숨겨졌을 때 All 탭으로 리셋
+    if (!isHidden) filterGenre('all', document.querySelector('.genre-tab'));
+    console.log(isHidden ? '🔓 Admin mode ON' : '🔒 Admin mode OFF');
+  }
+});
 </script>
 </body>
 </html>
