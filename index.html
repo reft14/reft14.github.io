@@ -1120,6 +1120,17 @@ function renderAll(filter = 'all', search = '') {
   } else {
     document.getElementById('totalYears').textContent = '—';
   }
+    // 보이는 서가만 순서대로 Shelf 번호 재할당
+  const romanNumerals = ['I', 'II', 'III', 'IV', 'V'];
+  let shelfIndex = 0;
+  genres.forEach(g => {
+    const section = document.getElementById('shelf-' + g);
+    const romanEl = section.querySelector('.shelf-roman');
+    if (section.style.display !== 'none' && !section.classList.contains('hidden')) {
+      romanEl.textContent = 'Shelf ' + romanNumerals[shelfIndex];
+      shelfIndex++;
+    }
+  });
 }
 
 function createBookEl(b, i) {
