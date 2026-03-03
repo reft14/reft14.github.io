@@ -1017,8 +1017,8 @@ const SPINE_COLORS = [
   { bg: '#3d1f00', accent: '#d4a87a' },
 ];
 
-const HEIGHTS = [130, 145, 160, 150, 135, 155, 140, 165, 138, 152];
-const WIDTHS =  [32,  28,  38,  30,  34,  36,  28,  40,  32,  30 ];
+const HEIGHTS = [180, 200, 220, 210, 190, 205, 195, 215, 185, 200];
+const WIDTHS =  [45,  40,  55,  45,  50,  52,  42,  58,  46,  44 ];
 
 let books = JSON.parse(localStorage.getItem('musicLibrary') || '[]');
 
@@ -1027,19 +1027,19 @@ if (books.length === 0) {
   books = [
     { id: 1, title: '푸름의 환영', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🌅', tags: ['청춘', '어쿠스틱', 'Jpop'], memo: '앨범 제작의 시작' },
     { id: 2, title: '희망의 등대', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🚤', tags: ['Jpop', '발라드'], memo: '앨범의 마지막 곡' },
-    { id: 3, title: '습작 1.', artist: 'ReFT', year: 2017, genre: 'hiphop', duration: '56:16', emoji: '🔥', tags: ['강렬', '서사'], memo: '' },
-    { id: 4, title: '습작 2', artist: 'ReFT', year: 1997, genre: 'indie', duration: '56:16', emoji: '📻', tags: ['몽환', '앰비언트'], memo: '시대를 앞서간 앨범' },
-    { id: 5, title: '습작 3', artist: 'ReFT', year: 1905, genre: 'classical', duration: '56:16', emoji: '🌙', tags: ['피아노', '달빛'], memo: '달이 뜨면 꼭 틀어야 해' },
-    { id: 6, title: '습작 4', artist: 'ReFT', year: 2022, genre: 'pop', duration: '56:16', emoji: '💿', tags: ['R&B', '감성', '여름'], memo: '' },
+    { id: 3, title: '습작 1.', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🔥', tags: ['강렬', '서사'], memo: '' },
+    { id: 4, title: '습작 2', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '📻', tags: ['몽환', '앰비언트'], memo: '시대를 앞서간 앨범' },
+    { id: 5, title: '습작 3', artist: 'ReFT', year: 2024, genre: 'electronic', duration: '56:16', emoji: '🌙', tags: ['피아노', '달빛'], memo: '달이 뜨면 꼭 틀어야 해' },
+    { id: 6, title: '습작 4', artist: 'ReFT', year: 2022, genre: 'electronic', duration: '56:16', emoji: '💿', tags: ['R&B', '감성', '여름'], memo: '' },
     { id: 7, title: 'プロポーズ', artist: '内緒のピアス', year: 2023, genre: 'indie', duration: '56:16', emoji: '💔', tags: ['앰비언트', '테크노'], memo: '집중할 때 항상' },
     { id: 8, title: '날아오른 무지개', artist: 'ReFT', year: 2025, genre: 'hiphop', duration: '56:16', emoji: '🌈', tags: ['실험적', '팝'], memo: '세 오리지널 곡중 가장 좋은 곡' },
     { id: 9, title: '夢花火', artist: 'まふまふ', year: 2015, genre: 'indie', duration: '56:16', emoji: '🎇', tags: ['Jpop', '신남'], memo: 'Jpop 입문 곡' },
     { id: 10, title: '크리스탈 사색', artist: 'ReFT', year: 2025, genre: 'hiphop', duration: '56:16', emoji: '💠', tags: ['랩', '힙합'], memo: '정식 릴리즈 첫 곡' },
     { id: 11, title: 'Listen Your Echo', artist: 'ReFT', year: 2025, genre: 'hiphop', duration: '56:16', emoji: '🤬', tags: ['Jpop', '랩'], memo: '가장 정신나간 곡' },
-    { id: 12, title: 'Burial — Untrue', artist: 'ReFT', year: 2007, genre: 'electronic', duration: '56:16', emoji: '🌧️', tags: ['덥스텝', '감성'], memo: '비 오는 날' },
-    { id: 13, title: 'J. Cole — 2014 Forest Hills Drive', artist: 'ReFT', year: 2014, genre: 'hiphop', duration: '56:16', emoji: '🏠', tags: ['성찰', '스토리'], memo: '' },
-    { id: 14, title: 'Arcade Fire — Funeral', artist: 'ReFT', year: 2004, genre: 'indie', duration: '56:16', emoji: '🎭', tags: ['앤섬', '감동'], memo: '인생 앨범' },
-    { id: 15, title: 'Chopin — Nocturnes', artist: 'ReFT', year: 1965, genre: 'classical', duration: '56:16', emoji: '🕯️', tags: ['야상곡', '피아노'], memo: '잠들기 전' },
+    { id: 12, title: 'Burial — Untrue', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🌧️', tags: ['덥스텝', '감성'], memo: '비 오는 날' },
+    { id: 13, title: 'J. Cole — 2014 Forest Hills Drive', artist: 'ReFT', year: 2025, genre: 'hiphop', duration: '56:16', emoji: '🏠', tags: ['성찰', '스토리'], memo: '' },
+    { id: 14, title: '비디오 1', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🎭', tags: ['앤섬', '감동'], memo: '인생 앨범' },
+    { id: 15, title: '비디오 2', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🕯️', tags: ['야상곡', '피아노'], memo: '잠들기 전' },
   ];
   saveBooks();
 }
@@ -1117,7 +1117,7 @@ function createBookEl(b, i) {
   el.innerHTML = `
     <div class="book-spine" style="background: linear-gradient(135deg, ${color.bg} 0%, ${adjustColor(color.bg, -20)} 100%); box-shadow: inset -2px 0 4px rgba(0,0,0,0.4), 2px 0 8px rgba(0,0,0,0.3);">
       <span class="book-ornament" style="color:${color.accent}">✦</span>
-      <span class="book-title-spine" style="color:${color.accent}">${b.title}</span>
+      <span class="book-title-spine" style="color:${color.accent}; ${/^[a-zA-Z\s\-—·.,'!?]+$/.test(b.title) ? 'font-size:0.5rem;' : ''}">${b.title}</span>
       <span class="book-year-spine" style="color:${color.accent}80">${b.year || ''}</span>
     </div>
     <div class="book-tooltip">
