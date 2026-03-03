@@ -784,6 +784,7 @@
 </style>
 </head>
 <body>
+  <audio id="audioPlayer" preload="none"></audio>
 
 <!-- Header -->
 <header class="library-header">
@@ -1199,23 +1200,56 @@ function addBook() {
 let isPlaying = false;
 
 function playBook(b) {
-  document.getElementById('playerTrack').textContent = b.title;
-  document.getElementById('playerArtist').textContent = b.artist;
-  document.getElementById('durationDisplay').textContent = b.duration || '—';
-  document.getElementById('playerBar').classList.add('active');
-  isPlaying = true;
-  document.getElementById('playBtn').textContent = '⏸';
+  // mp3가 있으면 플레이어에서 직접 재생
+  if (b.src) {
+    const audio = document.getElementById('audioPlayer');
+    audio.src = b.src;
+    audio.play();
+    document.getElementById('playerTrack').textContent = b.title;
+    document.getElementById('playerArtist').textContent = b.artist;
+    document.getElementById('durationDisplay').textContent = b.duration || '—';
+    document.getElementById('playerBar').classList.add('active');
+    isPlaying = true;
+    document.getElementById('playBtn').textContent = '⏸';
+
+    // 재생 진행바 업데이트
+    audio.ontimeupdate = () => {
+      if (audio.duration) {
+        const pct = (audio.currentTime / audio.duration) * 100;
+        document.getElementById('progressFill').style.width = pct + '%';
+        const m = Math.floor(audio.currentTime / 60);
+        const s = Math.floor(audio.currentTime % 60).toString().padStart(2,'0');
+        document.querySelector('.progress-time').textContent = m + ':' + s;
+      }
+    };
+
+  // mp3 없고 유튜브 링크 있으면 새 탭으로 열기
+  } else if (b.youtube) {
+    window.open(b.youtube, '_blank');
+
+  } else {
+    alert('등록된 음원이 없습니다.');
+  }
 }
 
 function togglePlay() {
+  const audio = document.getElementById('audioPlayer');
+  if (isPlaying) {
+    audio.pause();
+    document.getElementById('playBtn').textContent = '▶';
+  } else {
+    audio.play();
+    document.getElementById('playBtn').textContent = '⏸';
+  }
   isPlaying = !isPlaying;
-  document.getElementById('playBtn').textContent = isPlaying ? '⏸' : '▶';
 }
 
 function seekTrack(e) {
+  const audio = document.getElementById('audioPlayer');
   const bar = e.currentTarget;
-  const pct = e.offsetX / bar.offsetWidth * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
+  const pct = e.offsetX / bar.offsetWidth;
+  if (audio.duration) audio.currentTime = audio.duration * pct;
+  document.getElementById('progressFill').style.width = (pct * 100) + '%';
 }
 
 // ── INTERSECTION OBSERVER for section animations ──
