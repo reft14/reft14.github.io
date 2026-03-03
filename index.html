@@ -1057,7 +1057,7 @@ function saveBooks() {
 // ── RENDER ──
 function renderAll(filter = 'all', search = '') {
   const genres = ['pop', 'electronic', 'hiphop', 'indie', 'classical'];
-  const adminGenres = ['pop', 'classical']; // 숨겨진 장르
+  const adminGenres = ['pop', 'classical'];
   let total = 0;
   const years = new Set();
 
@@ -1066,7 +1066,6 @@ function renderAll(filter = 'all', search = '') {
     const section = document.getElementById('shelf-' + g);
     row.innerHTML = '';
 
-    // admin-only 장르가 현재 숨겨져 있으면 카운트에서 제외
     const isAdminHidden = adminGenres.includes(g) && section.style.display === 'none';
 
     const filtered = books.filter(b => {
@@ -1078,7 +1077,6 @@ function renderAll(filter = 'all', search = '') {
       return matchGenre && matchSearch;
     });
 
-    // Show/hide section based on filter
     if (filter !== 'all' && filter !== g) {
       section.classList.add('hidden');
       return;
@@ -1096,7 +1094,6 @@ function renderAll(filter = 'all', search = '') {
       }
     });
 
-    // Add button
     const addBtn = document.createElement('div');
     addBtn.className = 'add-book-btn';
     addBtn.innerHTML = '+';
@@ -1110,10 +1107,10 @@ function renderAll(filter = 'all', search = '') {
   });
 
   document.getElementById('totalBooks').textContent = total;
-  // 장르 서가 수 = 현재 보이는 서가 수
+
   const visibleShelves = genres.filter(g => {
-    const section = document.getElementById('shelf-' + g);
-    return section.style.display !== 'none';
+    const s = document.getElementById('shelf-' + g);
+    return s.style.display !== 'none';
   }).length;
   document.getElementById('totalShelves').textContent = visibleShelves;
 
@@ -1122,54 +1119,6 @@ function renderAll(filter = 'all', search = '') {
     document.getElementById('totalYears').textContent = arr[0] + '–' + arr[arr.length - 1];
   } else {
     document.getElementById('totalYears').textContent = '—';
-  }
-}
-
-  genres.forEach(g => {
-    const row = document.getElementById('row-' + g);
-    const section = document.getElementById('shelf-' + g);
-    row.innerHTML = '';
-
-    const filtered = books.filter(b => {
-      const matchGenre = b.genre === g;
-      const matchSearch = search === '' ||
-        b.title.toLowerCase().includes(search) ||
-        b.artist.toLowerCase().includes(search) ||
-        (b.tags || []).some(t => t.includes(search));
-      return matchGenre && matchSearch;
-    });
-
-    // Show/hide section based on filter
-    if (filter !== 'all' && filter !== g) {
-      section.classList.add('hidden');
-      return;
-    } else {
-      section.classList.remove('hidden');
-    }
-
-    filtered.forEach((b, i) => {
-      row.appendChild(createBookEl(b, i));
-      total++;
-      if (b.year) years.add(b.year);
-    });
-
-    // Add button
-    const addBtn = document.createElement('div');
-    addBtn.className = 'add-book-btn';
-    addBtn.innerHTML = '+';
-    addBtn.style.minHeight = '130px';
-    addBtn.title = '음원 추가';
-    addBtn.onclick = () => { document.getElementById('fGenre').value = g; openModal(); };
-    row.appendChild(addBtn);
-
-    const cnt = document.getElementById('count-' + g);
-    cnt.textContent = filtered.length + '권';
-  });
-
-  document.getElementById('totalBooks').textContent = total;
-  if (years.size > 0) {
-    const arr = [...years].sort();
-    document.getElementById('totalYears').textContent = arr[0] + '–' + arr[arr.length - 1];
   }
 }
 
