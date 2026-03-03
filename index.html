@@ -1057,8 +1057,73 @@ function saveBooks() {
 // ── RENDER ──
 function renderAll(filter = 'all', search = '') {
   const genres = ['pop', 'electronic', 'hiphop', 'indie', 'classical'];
+  const adminGenres = ['pop', 'classical']; // 숨겨진 장르
   let total = 0;
   const years = new Set();
+
+  genres.forEach(g => {
+    const row = document.getElementById('row-' + g);
+    const section = document.getElementById('shelf-' + g);
+    row.innerHTML = '';
+
+    // admin-only 장르가 현재 숨겨져 있으면 카운트에서 제외
+    const isAdminHidden = adminGenres.includes(g) && section.style.display === 'none';
+
+    const filtered = books.filter(b => {
+      const matchGenre = b.genre === g;
+      const matchSearch = search === '' ||
+        b.title.toLowerCase().includes(search) ||
+        b.artist.toLowerCase().includes(search) ||
+        (b.tags || []).some(t => t.includes(search));
+      return matchGenre && matchSearch;
+    });
+
+    // Show/hide section based on filter
+    if (filter !== 'all' && filter !== g) {
+      section.classList.add('hidden');
+      return;
+    } else {
+      if (!adminGenres.includes(g) || section.style.display !== 'none') {
+        section.classList.remove('hidden');
+      }
+    }
+
+    filtered.forEach((b, i) => {
+      row.appendChild(createBookEl(b, i));
+      if (!isAdminHidden) {
+        total++;
+        if (b.year) years.add(b.year);
+      }
+    });
+
+    // Add button
+    const addBtn = document.createElement('div');
+    addBtn.className = 'add-book-btn';
+    addBtn.innerHTML = '+';
+    addBtn.style.minHeight = '130px';
+    addBtn.title = '음원 추가';
+    addBtn.onclick = () => { document.getElementById('fGenre').value = g; openModal(); };
+    row.appendChild(addBtn);
+
+    const cnt = document.getElementById('count-' + g);
+    cnt.textContent = filtered.length + '권';
+  });
+
+  document.getElementById('totalBooks').textContent = total;
+  // 장르 서가 수 = 현재 보이는 서가 수
+  const visibleShelves = genres.filter(g => {
+    const section = document.getElementById('shelf-' + g);
+    return section.style.display !== 'none';
+  }).length;
+  document.getElementById('totalShelves').textContent = visibleShelves;
+
+  if (years.size > 0) {
+    const arr = [...years].sort();
+    document.getElementById('totalYears').textContent = arr[0] + '–' + arr[arr.length - 1];
+  } else {
+    document.getElementById('totalYears').textContent = '—';
+  }
+}
 
   genres.forEach(g => {
     const row = document.getElementById('row-' + g);
@@ -1277,9 +1342,9 @@ document.addEventListener('keydown', (e) => {
     hidden.forEach(el => {
       el.style.display = isHidden ? '' : 'none';
     });
-    // 숨겨졌을 때 All 탭으로 리셋
     if (!isHidden) filterGenre('all', document.querySelector('.genre-tab'));
-    console.log(isHidden ? '🔓 Admin mode ON' : '🔒 Admin mode OFF');
+    // 카운트 즉시 갱신
+    renderAll(currentGenre, currentSearch);
   }
 });
 // ── INIT ──
