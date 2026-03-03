@@ -781,6 +781,57 @@
   }
 
   .hidden { display: none !important; }
+    /* Volume */
+  .player-volume {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .volume-icon {
+    color: var(--wood-warm);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    user-select: none;
+  }
+
+  .volume-icon:hover { color: var(--gold); }
+
+  .volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    height: 3px;
+    background: rgba(201,168,76,0.2);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.3);
+  }
+
+  .volume-slider::-moz-range-thumb {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--gold);
+    cursor: pointer;
+    border: none;
+  }
 </style>
 </head>
 <body>
@@ -1000,6 +1051,10 @@
       <div class="progress-fill" id="progressFill"></div>
     </div>
     <span class="progress-time" id="durationDisplay">—:——</span>
+  </div>
+  <div class="player-volume">
+    <span class="volume-icon" id="volumeIcon" onclick="toggleMute()">🔊</span>
+    <input class="volume-slider" id="volumeSlider" type="range" min="0" max="100" value="80" oninput="setVolume(this.value)">
   </div>
 </div>
 
@@ -1289,6 +1344,38 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.shelf-section').forEach(s => observer.observe(s));
+
+// ── VOLUME ──
+let lastVolume = 80;
+
+function setVolume(val) {
+  const audio = document.getElementById('audioPlayer');
+  audio.volume = val / 100;
+  lastVolume = val;
+  const icon = document.getElementById('volumeIcon');
+  if (val == 0) icon.textContent = '🔇';
+  else if (val < 40) icon.textContent = '🔈';
+  else if (val < 70) icon.textContent = '🔉';
+  else icon.textContent = '🔊';
+}
+
+function toggleMute() {
+  const audio = document.getElementById('audioPlayer');
+  const slider = document.getElementById('volumeSlider');
+  if (audio.volume > 0) {
+    lastVolume = slider.value;
+    audio.volume = 0;
+    slider.value = 0;
+    document.getElementById('volumeIcon').textContent = '🔇';
+  } else {
+    audio.volume = lastVolume / 100;
+    slider.value = lastVolume;
+    setVolume(lastVolume);
+  }
+}
+
+// 초기 볼륨 설정
+document.getElementById('audioPlayer').volume = 0.8;
 
 // ── ADMIN MODE ──
 let adminBuffer = '';
