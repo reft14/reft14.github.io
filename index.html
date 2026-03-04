@@ -455,30 +455,6 @@
     letter-spacing: 0.05em;
   }
 
-  /* ── ADD BUTTON ── */
-  .add-book-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 36px;
-    min-height: 130px;
-    flex-shrink: 0;
-    border: 2px dashed rgba(201,168,76,0.3);
-    border-radius: 2px;
-    cursor: pointer;
-    transition: all 0.3s;
-    color: rgba(201,168,76,0.4);
-    font-size: 1.4rem;
-    background: rgba(201,168,76,0.03);
-  }
-
-  .add-book-btn:hover {
-    border-color: var(--gold);
-    color: var(--gold);
-    background: rgba(201,168,76,0.08);
-    transform: translateY(-5px);
-  }
-
   /* ── MODAL ── */
   .modal-overlay {
     position: fixed;
@@ -1081,32 +1057,48 @@ let books = JSON.parse(localStorage.getItem('musicLibrary') || '[]');
 // Sample data if empty
 if (books.length === 0) {
   books = [
-    { id: 1, title: '푸름의 환영', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🌅', tags: ['청춘', '어쿠스틱', 'Jpop'], memo: '앨범 제작의 시작' },
-    { id: 2, title: '희망의 등대', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🚤', tags: ['Jpop', '발라드'], memo: '앨범의 마지막 곡' },
-    { id: 3, title: '습작 1.', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🔥', tags: ['강렬', '서사'], memo: '' },
-    { id: 4, title: '습작 2', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '📻', tags: ['몽환', '앰비언트'], memo: '시대를 앞서간 앨범' },
-    { id: 5, title: '습작 3', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🌙', tags: ['피아노', '달빛'], memo: '달이 뜨면 꼭 틀어야 해' },
-    { id: 6, title: '습작 4', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '💿', tags: ['R&B', '감성', '여름'], memo: '' },
-    { id: 7, title: 'プロポーズ', artist: '内緒のピアス', year: 2025, genre: 'indie', src: 'music/propose.mp3', duration: '03:59', emoji: '💔', tags: ['Jpop', '보카로'], memo: '나름 잘 뽑힌 곡' },
-    { id: 8, title: '날아오른 무지개', artist: 'ReFT', year: 2025, genre: 'hiphop', src: 'music/flyingrainbow.mp3', duration: '03:42', emoji: '🌈', tags: ['실험적', '팝'], memo: '세 오리지널 곡중 가장 좋은 곡' },
-    { id: 9, title: '夢花火', artist: 'まふまふ', year: 2025, genre: 'indie', src: 'music/yumehanabi.mp3', duration: '56:16', emoji: '🎇', tags: ['Jpop', '신남'], memo: 'Jpop 입문 곡' },
-    { id: 10, title: '크리스탈 사색', artist: 'ReFT', year: 2025, genre: 'hiphop', src: 'music/Crystal.mp3', duration: '03:57', emoji: '💠', tags: ['랩', '힙합'], memo: '정식 릴리즈 첫 곡' },
-    { id: 11, title: 'Listen Your Echo', artist: 'ReFT', year: 2025, genre: 'hiphop', src: 'music/listenyourecho.mp3', duration: '03:15', emoji: '🤬', tags: ['Jpop', '랩'], memo: '가장 정신나간 곡' },
-    { id: 12, title: '습작 5', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🌧️', tags: ['덥스텝', '감성'], memo: '비 오는 날' },
-    { id: 13, title: '습작 6', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🏠', tags: ['성찰', '스토리'], memo: '' },
-    { id: 14, title: '비디오 1', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🎭', tags: ['앤섬', '감동'], memo: '인생 앨범' },
-    { id: 15, title: '비디오 2', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🕯️', tags: ['야상곡', '피아노'], memo: '잠들기 전' },
-    { id: 16, title: 'IRIS OUT', artist: '米津玄師', year: 2025, genre: 'indie', src: 'music/irisout.mp3', duration: '02:33', emoji: '💣', tags: ['Jpop', '신남'], memo: '목가는 노래' },
-    { id: 17, title: 'ジャンキーナイトタウンオーケストラ', artist: 'すりぃ', year: 2025, genre: 'indie', src: 'music/junkie.mp3', duration: '03:32', emoji: '🗑', tags: ['Jpop', '보카로'], memo: '스리이 시리즈 1' },
-    { id: 18, title: 'アンノウン·マザーグース', artist: 'wowoka', year: 2025, genre: 'indie', src: 'music/unknown.mp3', duration: '04:45', emoji: '🎞', tags: ['Jpop', '보카로'], memo: '제일 어려웠던 노래' },
-    { id: 19, title: 'ガリレオは恋をする', artist: '優里', year: 2023, genre: 'indie', src: 'music/garireo.mp3', duration: '04:17', emoji: '💞', tags: ['Jpop', '유우리'], memo: '유우리 노래 조아' },
-    { id: 20, title: 'シュガーソングとビターステップ', artist: 'UNISON SQUARE GARDEN', year: 2025, genre: 'indie', src: 'music/sugersong.mp3', duration: '04:14', emoji: '🧂', tags: ['Jpop', '신남'], memo: '화음 떡칠 1' },
-    { id: 21, title: 'かごめ', artist: '優里', year: 2025, genre: 'indie', src: 'music/kagome.mp3', duration: '04:27', emoji: '👥', tags: ['Jpop', '유우리'], memo: '유우리 조아 2' },
-    { id: 22, title: 'ラヴィ', artist: 'すりぃ', year: 2025, genre: 'indie', src: 'music/ravi.mp3', duration: '03:02', emoji: '👄', tags: ['Jpop', '보카로'], memo: '스리이 시리즈 2' },
-    { id: 23, title: 'ロウワー', artist: 'ぬゆり', year: 2025, genre: 'indie', src: 'music/rowa.mp3', duration: '03:49', emoji: '👩‍❤️‍👩', tags: ['Jpop', '보카로'], memo: '반음지옥' },
-    { id: 24, title: 'デーモンロード', artist: 'Kanaria', year: 2025, genre: 'indie', src: 'music/demonlord.mp3', duration: '02:38', emoji: '🤘', tags: ['Jpop', '보카로'], memo: '고음 롱톤' },
-    { id: 25, title: 'ベテルギウス', artist: '優里', year: 2025, genre: 'indie', src: 'music/betel.mp3', duration: '03:59', emoji: '✨', tags: ['Jpop', '유우리'], memo: '유우리 조아 3' },
-    { id: 26, title: '晩餐歌', artist: '.tuki', year: 2025, genre: 'indie', src: 'music/bansan.mp3', duration: '03:39', emoji: '✨', tags: ['Jpop', '유우리'], memo: '유우리 조아 3' },
+    // 앨범 카테고리
+    { id: 101, title: '푸름의 환영', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🌅', tags: ['청춘', '어쿠스틱', 'Jpop'], memo: '앨범 제작의 시작' },
+    { id: 102, title: '희망의 등대', artist: 'ReFT', year: 2024, genre: 'pop', duration: '56:16', emoji: '🚤', tags: ['Jpop', '발라드'], memo: '앨범의 마지막 곡' },
+    // 습작 카테고리
+    { id: 201, title: '습작 1.', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🔥', tags: ['강렬', '서사'], memo: '' },
+    { id: 202, title: '습작 2', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '📻', tags: ['몽환', '앰비언트'], memo: '시대를 앞서간 앨범' },
+    { id: 203, title: '습작 3', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🌙', tags: ['피아노', '달빛'], memo: '달이 뜨면 꼭 틀어야 해' },
+    { id: 204, title: '습작 4', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '💿', tags: ['R&B', '감성', '여름'], memo: '' },
+    { id: 205, title: '습작 5', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🌧️', tags: ['덥스텝', '감성'], memo: '비 오는 날' },
+    { id: 206, title: '습작 6', artist: 'ReFT', year: 2025, genre: 'electronic', duration: '56:16', emoji: '🏠', tags: ['성찰', '스토리'], memo: '' },
+    // 릴리즈 카테고리
+    { id: 301, title: '크리스탈 사색', artist: 'ReFT', year: 2025, genre: 'hiphop', src: 'music/Crystal.mp3', duration: '03:57', emoji: '💠', tags: ['랩', '힙합'], memo: '정식 릴리즈 첫 곡' },
+    { id: 302, title: 'Listen Your Echo', artist: 'ReFT', year: 2025, genre: 'hiphop', src: 'music/listenyourecho.mp3', duration: '03:15', emoji: '🤬', tags: ['Jpop', '랩'], memo: '가장 정신나간 곡' },
+    { id: 303, title: '날아오른 무지개', artist: 'ReFT', year: 2025, genre: 'hiphop', src: 'music/flyingrainbow.mp3', duration: '03:42', emoji: '🌈', tags: ['실험적', '팝'], memo: '세 오리지널 곡중 가장 좋은 곡' },
+    // 커버 카테고리
+    { id: 401, title: '만개화', artist: '안예은', year: 2023, genre: 'indie', src: 'music/mange.mp3', duration: '04:07', emoji: '🌻', tags: ['Kpop', '사극'], memo: '한국 노래' },
+    { id: 402, title: 'ガリレオは恋をする', artist: '優里', year: 2023, genre: 'indie', src: 'music/garireo.mp3', duration: '04:17', emoji: '💞', tags: ['Jpop', '유우리'], memo: '유우리 노래 조아' },
+    { id: 403, title: 'アンノウン·マザーグース', artist: 'wowoka', year: 2025, genre: 'indie', src: 'music/unknown.mp3', duration: '04:45', emoji: '🎞', tags: ['Jpop', '보카로'], memo: '제일 어려웠던 노래' },
+    { id: 404, title: '不言論', artist: 'Bak', year: 2025, genre: 'indie', src: 'music/fugen.mp3', duration: '03:50', emoji: '🕳', tags: ['Jpop', '발라드'], memo: '못 불렀어' },
+    { id: 405, title: 'ジャンキーナイトタウンオーケストラ', artist: 'すりぃ', year: 2025, genre: 'indie', src: 'music/junkie.mp3', duration: '03:32', emoji: '🗑', tags: ['Jpop', '보카로'], memo: '스리이 시리즈 1' },
+    { id: 406, title: 'ベテルギウス', artist: '優里', year: 2025, genre: 'indie', src: 'music/betel.mp3', duration: '03:59', emoji: '✨', tags: ['Jpop', '유우리'], memo: '유우리 조아 2' },
+    { id: 407, title: '物の怪の類', artist: 'めいちゃん', year: 2025, genre: 'indie', src: 'music/mononoke.mp3', duration: '04:06', emoji: '👹', tags: ['Jpop', '메이쨩'], memo: '믹싱 개판' },
+    { id: 408, title: '蜜月 Un・Deux・Trois', artist: 'DATEKEN', year: 2025, genre: 'indie', src: 'music/mitsugetsu.mp3', duration: '04:16', emoji: '🌙', tags: ['Jpop', '보카로'], memo: '발라드 보카로' },
+    { id: 409, title: 'ロウワー', artist: 'ぬゆり', year: 2025, genre: 'indie', src: 'music/rowa.mp3', duration: '03:49', emoji: '👩‍❤️‍👩', tags: ['Jpop', '보카로'], memo: '반음지옥' },
+    { id: 410, title: '晩餐歌', artist: '.tuki', year: 2025, genre: 'indie', src: 'music/bansan.mp3', duration: '03:39', emoji: '✨', tags: ['Jpop', '발라드'], memo: '너무 높아' },
+    { id: 411, title: 'シュガーソングとビターステップ', artist: 'UNISON SQUARE GARDEN', year: 2025, genre: 'indie', src: 'music/sugersong.mp3', duration: '04:14', emoji: '🧂', tags: ['Jpop', '신남'], memo: '화음 떡칠 1' },
+    { id: 412, title: 'Brain', artist: 'Kanaria', year: 2025, genre: 'indie', src: 'music/sugersong.mp3', duration: '02:37', emoji: '🧠', tags: ['Jpop', '신남'], memo: '음 이탈' },
+    { id: 413, title: '丸の内サディスティック', artist: '椎名林檎', year: 2025, genre: 'indie', src: 'music/marunouti.mp3', duration: '03:55', emoji: '👩', tags: ['Jpop', '신남'], memo: '발성 좋아지기 시작한 기점' },
+    { id: 414, title: 'ラヴィ', artist: 'すりぃ', year: 2025, genre: 'indie', src: 'music/ravi.mp3', duration: '03:02', emoji: '👄', tags: ['Jpop', '보카로'], memo: '스리이 시리즈 2' },
+    { id: 415, title: '夢花火', artist: 'まふまふ', year: 2025, genre: 'indie', src: 'music/yumehanabi.mp3', duration: '04:27', emoji: '🎇', tags: ['Jpop', '신남'], memo: 'Jpop 입문 곡' },
+    { id: 416, title: 'かごめ', artist: '優里', year: 2025, genre: 'indie', src: 'music/kagome.mp3', duration: '04:27', emoji: '👥', tags: ['Jpop', '유우리'], memo: '첫 어레인지 },
+    { id: 417, title: 'プロポーズ', artist: '内緒のピアス', year: 2025, genre: 'indie', src: 'music/propose.mp3', duration: '03:59', emoji: '💔', tags: ['Jpop', '보카로'], memo: '나름 잘 뽑힌 곡' },
+    { id: 418, title: 'SAKKI', artist: 'めいちゃん', year: 2025, genre: 'indie', src: 'music/SAKKI.mp3', duration: '03:55', emoji: '🧛‍♀️', tags: ['Jpop', '메이쨩'], memo: '믹싱 개판 2' },
+    { id: 419, title: 'デーモンロード', artist: 'Kanaria', year: 2025, genre: 'indie', src: 'music/demonlord.mp3', duration: '02:38', emoji: '🤘', tags: ['Jpop', '보카로'], memo: '고음 롱톤' },
+    { id: 420, title: '革命途中', artist: 'アイナ・ジ・エンド', year: 2025, genre: 'indie', src: 'music/kakumei.mp3', duration: '03:16', emoji: '✊', tags: ['Jpop', '여자키'], memo: '여자키 그대로' },
+    { id: 421, title: '愛を伝えたいだとか', artist: 'あいみょん', year: 2025, genre: 'indie', src: 'music/aiwo.mp3', duration: '03:54', emoji: '💌', tags: ['Jpop', '키 바꿈'], memo: '키 바꿈' },
+    { id: 422, title: 'IRIS OUT', artist: '米津玄師', year: 2025, genre: 'indie', src: 'music/irisout.mp3', duration: '02:33', emoji: '💣', tags: ['Jpop', '신남'], memo: '목가는 노래' },
+    { id: 423, title: 'ケセラセラ', artist: 'Mrs. GREEN APPLE', year: 2026, genre: 'indie', src: 'music/keserasera.mp3', duration: '04:32', emoji: '💣', tags: ['Jpop', '신남'], memo: '신병 위로 휴가' },
+    // 비디오 카테고리
+    { id: 501, title: '비디오 1', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🎭', tags: ['앤섬', '감동'], memo: '인생 앨범' },
+    { id: 502, title: '비디오 2', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🕯️', tags: ['야상곡', '피아노'], memo: '잠들기 전' },
+    
   ];
   saveBooks();
 }
@@ -1154,14 +1146,6 @@ function renderAll(filter = 'all', search = '') {
         if (b.year) years.add(b.year);
       }
     });
-
-    const addBtn = document.createElement('div');
-    addBtn.className = 'add-book-btn';
-    addBtn.innerHTML = '+';
-    addBtn.style.minHeight = '130px';
-    addBtn.title = '음원 추가';
-    addBtn.onclick = () => { document.getElementById('fGenre').value = g; openModal(); };
-    row.appendChild(addBtn);
 
     const cnt = document.getElementById('count-' + g);
     cnt.textContent = filtered.length + '권';
