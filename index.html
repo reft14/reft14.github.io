@@ -850,7 +850,7 @@
   <button class="genre-tab" onclick="filterGenre('electronic', this)">Etude</button>
   <button class="genre-tab" onclick="filterGenre('hiphop', this)">Released</button>
   <button class="genre-tab" onclick="filterGenre('indie', this)">Cover</button>
-  <button class="genre-tab admin-only" onclick="filterGenre('classical', this)" style="display:none;">Videos</button>
+  <button class="genre-tab admin-only" onclick="filterGenre('classical', this)" style="display:none;">Sketchs</button>
 </nav>
 
 <!-- Library Main -->
@@ -934,7 +934,7 @@
       <div class="shelf-label-line"></div>
       <div class="shelf-label-text">
         <span class="shelf-roman">Shelf V</span>
-        <span class="shelf-title-main">Videos</span>
+        <span class="shelf-title-main">Sketchs</span>
         <span class="shelf-count" id="count-classical">—</span>
       </div>
       <div class="shelf-label-line right"></div>
@@ -1095,9 +1095,14 @@ if (books.length === 0) {
     { id: 421, title: '愛を伝えたいだとか', artist: 'あいみょん', year: 2025, genre: 'indie', src: 'music/aiwo.mp3', duration: '03:54', emoji: '💌', tags: ['Jpop', '키 바꿈'], memo: '키 바꿈' },
     { id: 422, title: 'IRIS OUT', artist: '米津玄師', year: 2025, genre: 'indie', src: 'music/irisout.mp3', duration: '02:33', emoji: '💣', tags: ['Jpop', '신남'], memo: '목가는 노래' },
     { id: 423, title: 'ケセラセラ', artist: 'Mrs. GREEN APPLE', year: 2026, genre: 'indie', src: 'music/keserasera.mp3', duration: '04:32', emoji: '💣', tags: ['Jpop', '신남'], memo: '신병 위로 휴가' },
-    // 비디오 카테고리
-    { id: 501, title: '비디오 1', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🎭', tags: ['앤섬', '감동'], memo: '인생 앨범' },
-    { id: 502, title: '비디오 2', artist: 'ReFT', year: 2025, genre: 'classical', duration: '56:16', emoji: '🕯️', tags: ['야상곡', '피아노'], memo: '잠들기 전' },
+    // 스케치 카테고리
+    { id: 501, title: '눈꽃 무도회 인트로', artist: 'ReFT', year: 2026, genre: 'classical', src: 'music/nunintro.m4a', duration: '00:26', tags: ['인트로', '눈꽃 무도회'], memo: '' },
+    { id: 502, title: '눈꽃 무도회 사비', artist: 'ReFT', year: 2026, genre: 'classical', src: 'music/nunsabi.m4a', duration: '00:41', tags: ['사비', '눈꽃 무도회'], memo: '' },
+    { id: 503, title: '신년 페스티벌', artist: 'ReFT', year: 2026, genre: 'classical', src: 'music/fes.m4a', duration: '00:47', tags: ['사비', '신년 페스티벌'], memo: '' },
+    { id: 504, title: '헤어진 님과 그대', artist: 'ReFT', year: 2026, genre: 'classical', src: 'music/heujin.m4a', duration: '01:32', tags: ['사비', '헤어진 님과 그대'], memo: '' },
+    { id: 505, title: '그 여름의 청춘 아웃트로', artist: 'ReFT', year: 2026, genre: 'classical', src: 'music/guyorumutro.m4a', duration: '00:31', tags: ['아웃트로', '그 여름의 청춘'], memo: '' },
+    { id: 506, title: '그 여름의 청춘 사비', artist: 'ReFT', year: 2026, genre: 'classical', src: 'music/guyorumsabi.m4a', duration: '00:26', tags: ['사비', '그 여름의 청춘'], memo: '' },
+    { id: 507, title: 'Junky Night 폰녹음', artist: 'ReFT', year: 2026, genre: 'classical', src: 'music/junkynight.m4a', duration: '01:56', tags: ['폰 녹음', '정키 나이트'], memo: '' },
     
   ];
   saveBooks();
